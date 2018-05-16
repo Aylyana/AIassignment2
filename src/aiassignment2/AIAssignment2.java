@@ -1,17 +1,12 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package aiassignment2;
-
-
 import java.io.*;
 import java.util.*;
-
-=======
-
-
 
 
 public class AIAssignment2 {
@@ -83,7 +78,7 @@ public class AIAssignment2 {
     }
     
     private static void InitMethods(){
-        aMethods[0]= new TT();
+        aMethods[0]= new FC();
         //TT
         //FC
         //BC
@@ -142,5 +137,5 @@ public class AIAssignment2 {
 		//this code should be unreachable. This statement is simply to satisfy Eclipse.
 		
 	}
-
 }
+

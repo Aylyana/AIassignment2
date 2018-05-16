@@ -12,4 +12,6 @@ package aiassignment2;
 public abstract class SearchMethod {
     public String code;
     
+
 }
+
