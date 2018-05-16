@@ -14,18 +14,18 @@ public class AIAssignment2 {
      */
     public static AIAssignment2 iengine;
     public static String query;
-    public static ArrayList<String> facts;
-    public static ArrayList<String> clauses;
     public static ArrayList<String> agenda;
-    public static final int METHOD_COUNT = 1;
+    public static ArrayList<String> clauses;
+    public static ArrayList<Integer> count;
+    public static final int METHOD_COUNT = 3;
     public static SearchMethod[] aMethods;
 
     public static void main(String[] args) {
         
-        //InitMethods();
-        facts = new ArrayList<>();
-        clauses = new ArrayList<>();
+        InitMethods();
         agenda = new ArrayList<>();
+        clauses = new ArrayList<>();
+        count = new ArrayList<>();
         
         if(args.length <2){
             System.out.println("Usage:iengine <method> <filename>");
@@ -38,31 +38,29 @@ public class AIAssignment2 {
             e.printStackTrace();
         }
         
-        String method = args[1];
+        String method = args[0];
 	SearchMethod thisMethod = null;
 		
-//        //determine which method the user wants to use to solve the puzzles
-//            for(int i = 0; i < METHOD_COUNT; i++)
-//            {
-//                    //do they want this one?
-//                    if(aMethods[i].code.compareTo(method) == 0)
-//                    {
-//                            //yes, use this method.
-//                            thisMethod = aMethods[i];
-//                    }
-//            }
-//
-//            //Has the method been implemented?
-//            if(thisMethod == null)
-//            {
-//                    //No, give an error
-//                    System.out.println("Search method identified by " + method + " not implemented. Methods are case sensitive.");
-//                    System.exit(1);
-//            }
-//           
-        if(facts!=null){
-            System.out.print(facts);
-        }
+        //determine which method the user wants to use to solve the puzzles
+            for(int i = 0; i < METHOD_COUNT; i++)
+            {
+                    //do they want this one?
+                    if(aMethods[i].code.compareTo(method) == 0)
+                    {
+                            //yes, use this method.
+                            thisMethod = aMethods[i];
+                    }
+            }
+
+            //Has the method been implemented?
+            if(thisMethod == null)
+            {
+                    //No, give an error
+                    System.out.println("Search method identified by " + method + " not implemented. Methods are case sensitive.");
+                    System.exit(1);
+            }
+           
+      
         
         if(clauses!=null){
             System.out.print(clauses);
@@ -71,13 +69,20 @@ public class AIAssignment2 {
         if(agenda!=null){
             System.out.print(agenda);
         }
+        
+        boolean check = thisMethod.methodEntails(agenda, clauses, count, query);
+        String result = thisMethod.methodOutput(check);
+        System.out.print(result);
 
 
         
     }
     
     private static void InitMethods(){
+        aMethods = new SearchMethod[METHOD_COUNT];
         aMethods[0]= new FC();
+        aMethods[1]=new BC();
+        aMethods[2]=new TT();
         //TT
         //FC
         //BC
@@ -91,7 +96,7 @@ public class AIAssignment2 {
 			//create file reading objects
 			FileReader reader = new FileReader(fileName);
 			BufferedReader buff = new BufferedReader(reader);
-			AIAssignment2 result;
+			
                         
                         String line = buff.readLine();
                         if(line.equalsIgnoreCase("Tell")){
@@ -99,9 +104,10 @@ public class AIAssignment2 {
                             sentencesArray = line.split(";");
                             for (int i=0; i<sentencesArray.length;i++){
                                 if(!sentencesArray[i].contains("=>"))
-                                    facts.add(sentencesArray[i]);
+                                    agenda.add(sentencesArray[i]);
                                 else{
                                     clauses.add(sentencesArray[i]);
+                                    count.add(sentencesArray[i].split("&").length);
                                 }
                             }
                             
@@ -110,7 +116,7 @@ public class AIAssignment2 {
                         line = buff.readLine();
                         if(line.equalsIgnoreCase("Ask")){
                             line = buff.readLine();
-                            agenda.add(line);
+                            query = line;
                         }
                         
                         
