@@ -9,11 +9,7 @@ package aiassignment2;
  *
  * @author Carl
  */
-public class FC extends SearchMethod {
-    
-    public FC(){
-    code= "FC";
-    
-    }
+public abstract class SearchMethod {
+    public String code;
     
 }

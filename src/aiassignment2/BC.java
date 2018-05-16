@@ -9,6 +9,9 @@ package aiassignment2;
  *
  * @author Carl
  */
-public class BC {
+public class BC extends SearchMethod {
+    public BC(){
+    code ="BC";
+    }
     
 }
