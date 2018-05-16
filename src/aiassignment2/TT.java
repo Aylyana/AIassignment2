@@ -5,6 +5,8 @@
  */
 package aiassignment2;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Carl
@@ -12,6 +14,21 @@ package aiassignment2;
 public class TT extends SearchMethod{
     public TT(){
         code="TT";
+    }
+
+    @Override
+    public String methodOutput(boolean entails) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean methodEntails(ArrayList<String> agenda, ArrayList<String> clauses, ArrayList<Integer> count, String query) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean premiseContains(String clause, String ask) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
