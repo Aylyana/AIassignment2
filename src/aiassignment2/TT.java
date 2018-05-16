@@ -9,6 +9,9 @@ package aiassignment2;
  *
  * @author Carl
  */
-public class TT {
+public class TT extends SearchMethod{
+    public TT(){
+        code="TT";
+    }
     
 }
