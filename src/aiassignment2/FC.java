@@ -5,7 +5,6 @@
  */
 package aiassignment2;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -29,12 +28,14 @@ public class FC extends SearchMethod {
            result = "YES:";
            for(int i=0; i<entails.size();i++){
                result += entails.get(i)+",";
+               
            }
        }
        else{
            result ="NO";
        }
-       return result;
+       
+       return result+=a;
     }
     
     
